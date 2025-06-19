@@ -4,7 +4,7 @@
 
 A lightweight web application that allows you to easily send HTTP requests (GET, POST, PUT, PATCH, DELETE) to any API and view the response in a clean, user-friendly interface.
 
-### Production: [Visit Production Site: thaopm-rtc-meeting.onrender.com](https://thaopm-api-tester.onrender.com)
+### Production: [Visit Production Site: thaopm-api-tester.onrender.com](https://thaopm-api-tester.onrender.com)
 
 ## Features
 
