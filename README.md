@@ -4,7 +4,6 @@
 
 A lightweight web application that allows you to easily send HTTP requests (GET, POST, PUT, PATCH, DELETE) to any API and view the response in a clean, user-friendly interface.
 
-### Production: [Visit Production Site: thaopm-api-tester.onrender.com](https://thaopm-api-tester.onrender.com)
 
 ## Features
 
@@ -80,8 +79,5 @@ The filename will be timestamped like: `response-2025-06-19T07-27-44.json`.
 ## Author
 
 - Pham Minh Thao – [LinkedIn](https://www.linkedin.com/in/mtpe-minhthaopham/)
-- Live demo: [https://thaopm-api-tester.onrender.com](https://thaopm-api-tester.onrender.com)
 
 ---
-
-If you find this tool useful, please consider giving it a star 🌟 or sharing it with others who work with APIs!
