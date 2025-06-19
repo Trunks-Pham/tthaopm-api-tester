@@ -13,6 +13,7 @@
     "@codemirror/basic-setup": "^0.18.2",
     "@codemirror/commands": "^0.18.2",
     "@codemirror/lang-json": "^0.18.0",
+    "@codemirror/state": "^6.5.2",
     "@codemirror/view": "^0.18.16",
     "@popperjs/core": "^2.11.8",
     "axios": "^0.21.1",
