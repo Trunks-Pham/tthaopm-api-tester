@@ -83,5 +83,3 @@ The filename will be timestamped like: `response-2025-06-19T07-27-44.json`.
 - Live demo: [https://thaopm-api-tester.onrender.com](https://thaopm-api-tester.onrender.com)
 
 ---
-
-If you find this tool useful, please consider giving it a star 🌟 or sharing it with others who work with APIs!
