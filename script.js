@@ -80,7 +80,7 @@ function updateResponseDetails(response) {
   document.querySelector("[data-time]").textContent = response.customData.time
   document.querySelector("[data-size]").textContent = prettyBytes(
     JSON.stringify(response.data).length +
-    JSON.stringify(response.headers).length
+      JSON.stringify(response.headers).length
   )
 }
 
@@ -114,30 +114,3 @@ function keyValuePairsToObjects(container) {
     return { ...data, [key]: value }
   }, {})
 }
-
-document.addEventListener("DOMContentLoaded", () => {
-  const downloadBtn = document.getElementById("download-response-btn");
-  const responseEditorContainer = document.querySelector("[data-json-response-body]");
-
-  if (downloadBtn && responseEditorContainer) {
-    downloadBtn.addEventListener("click", () => {
-      const responseText = responseEditorContainer.innerText;
-      if (!responseText || responseText.trim() === "") {
-        alert("Không có dữ liệu để lưu.");
-        return;
-      }
-
-      const blob = new Blob([responseText], { type: "application/json" });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      const filename = `response_${new Date().toISOString().slice(0, 19).replace(/[:T]/g, "-")}.json`;
-
-      a.href = url;
-      a.download = filename;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
-    });
-  }
-});
