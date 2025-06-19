@@ -1,4 +1,4 @@
-import { EditorState, basicSetup } from "@codemirror/basic-setup"
+import { EditorState,basicSetup } from '@codemirror/state';
 import { defaultTabBinding } from "@codemirror/commands"
 import { EditorView, keymap } from "@codemirror/view"
 import { json } from "@codemirror/lang-json"
