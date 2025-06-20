@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TThaopm - API Documentation</title>
+  <link rel="icon" href="/programming.png" type="image/png" />
+
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f8f9fa;
+    }
+
+    .card {
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    .accordion-button {
+      font-weight: 600;
+      background-color: #fff;
+    }
+
+    .accordion-button:not(.collapsed) {
+      color: #0d6efd;
+      background-color: #f1f5f9;
+    }
+
+    .btn {
+      border-radius: 8px;
+    }
+
+    pre {
+      background-color: #f8f9fa;
+      padding: 1rem;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container py-5">
+    <h1 class="mb-3 fw-bold text-center text-primary">TThaopm - API Documentation</h1>
+    <div class="mb-4 text-center">
+      <button id="toggle-language" class="btn btn-outline-primary">Switch to English</button>
+      <a href="index.html" class="btn btn-outline-secondary ms-2">Back to API Tester</a>
+    </div>
+
+    <div class="card p-4">
+      <div id="vietnamese-content">
+        <h2 class="mb-3">Tài liệu API</h2>
+        <p>Dưới đây là tài liệu dạng <code>curl -X GET</code> cho hơn 100 API miễn phí giúp bạn test đủ mọi lĩnh vực (mèo, chó, thời tiết, tiền ảo, lịch sử…):</p>
+
+        <h3 class="mt-4">Hướng dẫn nhanh</h3>
+        <ul>
+          <li>Mỗi đoạn lệnh gọi theo chuẩn:</li>
+        </ul>
+        <pre>
+curl -X GET '&lt;URL&gt;' \
+  -H 'Accept: application/json' \
+  -H 'Content-Type: application/json'
+        </pre>
+        <ul>
+          <li>Bạn có thể copy hết vào file <code>.sh</code> và chạy.</li>
+        </ul>
+
+        <h3 class="mt-4">14 ví dụ nổi bật</h3>
+        <div class="accordion" id="api-examples-vn">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="heading1-vn">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1-vn" aria-expanded="false" aria-controls="collapse1-vn">
+                JSON Placeholder - Posts
+              </button>
+            </h2>
+            <div id="collapse1-vn" class="accordion-collapse collapse" aria-labelledby="heading1-vn" data-bs-parent="#api-examples-vn">
+              <div class="accordion-body">
+                <pre>
+curl -X GET 'https://jsonplaceholder.typicode.com/posts' \
+  -H 'Accept: application/json' \
+  -H 'Content-Type: application/json'
+                </pre>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="heading2-vn">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2-vn" aria-expanded="false" aria-controls="collapse2-vn">
+                Public APIs - Entries
+              </button>
+            </h2>
+            <div id="collapse2-vn" class="accordion-collapse collapse" aria-labelledby="heading2-vn" data-bs-parent="#api-examples-vn">
+              <div class="accordion-body">
+                <pre>
+curl -X GET 'https://api.publicapis.org/entries' \
+  -H 'Accept: application/json' \
+  -H 'Content-Type: application/json'
+                </pre>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="heading3-vn">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3-vn" aria-expanded="false" aria-controls="collapse3-vn">
+                Cat Fact
+              </button>
+            </h2>
+            <div id="collapse3-vn" class="accordion-collapse collapse" aria-labelledby="heading3-vn" data-bs-parent="#api-examples-vn">
+              <div class="accordion-body">
+                <pre>
+curl -X GET 'https://catfact.ninja/fact' \
+  -H 'Accept: application/json' \
+  -H 'Content-Type: application/json'
+                </pre>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="heading4-vn">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse4-vn" aria-expanded="false" aria-controls="collapse4-vn">
+                Dog CEO - Random Image
+              </button>
+            </h2>
+            <div id="collapse4-vn" class="accordion-collapse collapse" aria-labelledby="heading4-vn" data-bs-parent="#api-examples-vn">
+              <div class="accordion-body">
+                <pre>
+curl -X GET 'https://dog.ceo/api/breeds/image/random' \
+  -H 'Accept: application/json' \
+  -H 'Content-Type: application/json'
+                </pre>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="heading5-vn">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse5-vn" aria-expanded="false" aria-controls="collapse5-vn">
+                Random User
+              </button>
+            </h2>
+            <div id="collapse5-vn" class="accordion-collapse collapse" aria-labelledby="heading5-vn" data-bs-parent="#api-examples-vn">
+              <div class="accordion-body">
+                <pre>
+curl -X GET 'https://randomuser.me/api/' \
+  -H 'Accept: application/json' \
+  -H 'Content-Type: application/json'
+                </pre>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="heading6-vn">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse6-vn" aria-expanded="false" aria-controls="collapse6-vn">
+                Quotable - Random Quote
+              </button>
+            </h2>
+            <div id="collapse6-vn" class="accordion-collapse collapse" aria-labelledby="heading6-vn" data-bs-parent="#api-examples-vn">
+              <div class="accordion-body">
+                <pre>
+curl -X GET 'https://api.quotable.io/random' \
+  -H 'Accept: application/json' \
+  -H 'Content-Type: application/json'
+                </pre>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="heading7-vn">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse7-vn" aria-expanded="false" aria-controls="collapse7-vn">
+                REST Countries
+              </button>
+            </h2>
+            <div id="collapse7-vn" class="accordion-collapse collapse" aria-labelledby="heading7-vn" data-bs-parent="#api-examples-vn">
+              <div class="accordion-body">
+                <pre>
+curl -X GET 'https://restcountries.com/v3.1/all' \
+  -H 'Accept: application/json' \
+  -H 'Content-Type: application/json'
+                </pre>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="heading8-vn">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse8-vn" aria-expanded="false" aria-controls="collapse8-vn">
+                DummyJSON - Products
+              </button>
+            </h2>
+            <div id="collapse8-vn" class="accordion-collapse collapse" aria-labelledby="heading8-vn" data-bs-parent="#api-examples-vn">
+              <div class="accordion-body">
+                <pre>
+curl -X GET 'https://dummyjson.com/products' \
+  -H 'Accept: application/json' \
+  -H 'Content-Type: application/json'
+                </pre>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="heading9-vn">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse9-vn" aria-expanded="false" aria-controls="collapse9-vn">
+                Bored API - Activity
+              </button>
+            </h2>
+            <div id="collapse9-vn" class="accordion-collapse collapse" aria-labelledby="heading9-vn" data-bs-parent="#api-examples-vn">
+              <div class="accordion-body">
+                <pre>
+curl -X GET 'https://www.boredapi.com/api/activity' \
+  -H 'Accept: application/json' \
+  -H 'Content-Type: application/json'
+                </pre>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="heading10-vn">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse10-vn" aria-expanded="false" aria-controls="collapse10-vn">
+                Joke API
+              </button>
+            </h2>
+            <div id="collapse10-vn" class="accordion-collapse collapse" aria-labelledby="heading10-vn" data-bs-parent="#api-examples-vn">
+              <div class="accordion-body">
+                <pre>
+curl -X GET 'https://v2.jokeapi.dev/joke/Any' \
+  -H 'Accept: application/json' \
+  -H 'Content-Type: application/json'
+                </pre>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="heading11-vn">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse11-vn" aria-expanded="false" aria-controls="collapse11-vn">
+                Open Meteo - Weather
+              </button>
+            </h2>
+            <div id="collapse11-vn" class="accordion-collapse collapse" aria-labelledby="heading11-vn" data-bs-parent="#api-examples-vn">
+              <div class="accordion-body">
+                <pre>
+curl -X GET 'https://api.open-meteo.com/v1/forecast?latitude=10.76&longitude=106.66&current_weather=true' \
+  -H 'Accept: application/json' \
+  -H 'Content-Type: application/json'
+                </pre>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="heading12-vn">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse12-vn" aria-expanded="false" aria-controls="collapse12-vn">
+                CoinGecko - Crypto Prices
+              </button>
+            </h2>
+            <div id="collapse12-vn" class="accordion-collapse collapse" aria-labelledby="heading12-vn" data-bs-parent="#api-examples-vn">
+              <div class="accordion-body">
+                <pre>
+curl -X GET 'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&vs_currencies=usd' \
+  -H 'Accept: application/json' \
+  -H 'Content-Type: application/json'
+                </pre>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="heading13-vn">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse13-vn" aria-expanded="false" aria-controls="collapse13-vn">
+                SpaceX - Latest Launch
+              </button>
+            </h2>
+            <div id="collapse13-vn" class="accordion-collapse collapse" aria-labelledby="heading13-vn" data-bs-parent="#api-examples-vn">
+              <div class="accordion-body">
+                <pre>
+curl -X GET 'https://api.spacexdata.com/v4/launches/latest' \
+  -H 'Accept: application/json' \
+  -H 'Content-Type: application/json'
+                </pre>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="heading14-vn">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse14-vn" aria-expanded="false" aria-controls="collapse14-vn">
+                History - Date
+              </button>
+            </h2>
+            <div id="collapse14-vn" class="accordion-collapse collapse" aria-labelledby="heading14-vn" data-bs-parent="#api-examples-vn">
+              <div class="accordion-body">
+                <pre>
+curl -X GET 'https://history.muffinlabs.com/date' \
+  -H 'Accept: application/json' \
+  -H 'Content-Type: application/json'
+                </pre>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="mt-4">Danh sách 100+ API miễn phí</h3>
+        <p>Mình đã tổng hợp danh sách phong phú hơn 100 API miễn phí (không cần API key), thuộc 20+ lĩnh vực như Animals, Crypto, Dev Tools, Food, Games, Music… Dễ dàng khám phá qua:</p>
+        <ul>
+          <li><a href="https://apipheny.io/free-api/?utm_source=chatgpt.com">Public APIs (GitHub)</a> – kho API lớn, cập nhật thường xuyên</li>
+          <li><a href="https://mixedanalytics.com/blog/list-actually-free-open-no-auth-needed-apis/?utm_source=chatgpt.com">Mixed Analytics</a> – danh sách hơn 100 API không cần auth</li>
+        </ul>
+
+        <h3 class="mt-4">Bước tiếp theo cho bạn</h3>
+        <ol>
+          <li>Duyệt qua các nguồn trên, chọn API phù hợp từng lĩnh vực.</li>
+          <li>Chuyển URL vào <code>curl</code> template như trên.</li>
+          <li>Test ngay!!!!!</li>
+        </ol>
+      </div>
+
+      <div id="english-content" class="d-none">
+        <h2 class="mb-3">API Documentation</h2>
+        <p>Below is documentation in <code>curl -X GET</code> format for over 100 free APIs to test various domains (cats, dogs, weather, crypto, history…):</p>
+
+        <h3 class="mt-4">Quick Guide</h3>
+        <ul>
+          <li>Each command follows the standard format:</li>
+        </ul>
+        <pre>
+curl -X GET '&lt;URL&gt;' \
+  -H 'Accept: application/json' \
+  -H 'Content-Type: application/json'
+        </pre>
+        <ul>
+          <li>You can copy them into a <code>.sh</code> file and run it.</li>
+        </ul>
+
+        <h3 class="mt-4">14 Highlighted Examples</h3>
+        <div class="accordion" id="api-examples-en">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="heading1-en">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1-en" aria-expanded="false" aria-controls="collapse1-en">
+                JSON Placeholder - Posts
+              </button>
+            </h2>
+            <div id="collapse1-en" class="accordion-collapse collapse" aria-labelledby="heading1-en" data-bs-parent="#api-examples-en">
+              <div class="accordion-body">
+                <pre>
+curl -X GET 'https://jsonplaceholder.typicode.com/posts' \
+  -H 'Accept: application/json' \
+  -H 'Content-Type: application/json'
+                </pre>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="heading2-en">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2-en" aria-expanded="false" aria-controls="collapse2-en">
+                Public APIs - Entries
+              </button>
+            </h2>
+            <div id="collapse2-en" class="accordion-collapse collapse" aria-labelledby="heading2-en" data-bs-parent="#api-examples-en">
+              <div class="accordion-body">
+                <pre>
+curl -X GET 'https://api.publicapis.org/entries' \
+  -H 'Accept: application/json' \
+  -H 'Content-Type: application/json'
+                </pre>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="heading3-en">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3-en" aria-expanded="false" aria-controls="collapse3-en">
+                Cat Fact
+              </button>
+            </h2>
+            <div id="collapse3-en" class="accordion-collapse collapse" aria-labelledby="heading3-en" data-bs-parent="#api-examples-en">
+              <div class="accordion-body">
+                <pre>
+curl -X GET 'https://catfact.ninja/fact' \
+  -H 'Accept: application/json' \
+  -H 'Content-Type: application/json'
+                </pre>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="heading4-en">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse4-en" aria-expanded="false" aria-controls="collapse4-en">
+                Dog CEO - Random Image
+              </button>
+            </h2>
+            <div id="collapse4-en" class="accordion-collapse collapse" aria-labelledby="heading4-en" data-bs-parent="#api-examples-en">
+              <div class="accordion-body">
+                <pre>
+curl -X GET 'https://dog.ceo/api/breeds/image/random' \
+  -H 'Accept: application/json' \
+  -H 'Content-Type: application/json'
+                </pre>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="heading5-en">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse5-en" aria-expanded="false" aria-controls="collapse5-en">
+                Random User
+              </button>
+            </h2>
+            <div id="collapse5-en" class="accordion-collapse collapse" aria-labelledby="heading5-en" data-bs-parent="#api-examples-en">
+              <div class="accordion-body">
+                <pre>
+curl -X GET 'https://randomuser.me/api/' \
+  -H 'Accept: application/json' \
+  -H 'Content-Type: application/json'
+                </pre>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="heading6-en">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse6-en" aria-expanded="false" aria-controls="collapse6-en">
+                Quotable - Random Quote
+              </button>
+            </h2>
+            <div id="collapse6-en" class="accordion-collapse collapse" aria-labelledby="heading6-en" data-bs-parent="#api-examples-en">
+              <div class="accordion-body">
+                <pre>
+curl -X GET 'https://api.quotable.io/random' \
+  -H 'Accept: application/json' \
+  -H 'Content-Type: application/json'
+                </pre>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="heading7-en">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse7-en" aria-expanded="false" aria-controls="collapse7-en">
+                REST Countries
+              </button>
+            </h2>
+            <div id="collapse7-en" class="accordion-collapse collapse" aria-labelledby="heading7-en" data-bs-parent="#api-examples-en">
+              <div class="accordion-body">
+                <pre>
+curl -X GET 'https://restcountries.com/v3.1/all' \
+  -H 'Accept: application/json' \
+  -H 'Content-Type: application/json'
+                </pre>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="heading8-en">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse8-en" aria-expanded="false" aria-controls="collapse8-en">
+                DummyJSON - Products
+              </button>
+            </h2>
+            <div id="collapse8-en" class="accordion-collapse collapse" aria-labelledby="heading8-en" data-bs-parent="#api-examples-en">
+              <div class="accordion-body">
+                <pre>
+curl -X GET 'https://dummyjson.com/products' \
+  -H 'Accept: application/json' \
+  -H 'Content-Type: application/json'
+                </pre>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="heading9-en">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse9-en" aria-expanded="false" aria-controls="collapse9-en">
+                Bored API - Activity
+              </button>
+            </h2>
+            <div id="collapse9-en" class="accordion-collapse collapse" aria-labelledby="heading9-en" data-bs-parent="#api-examples-en">
+              <div class="accordion-body">
+                <pre>
+curl -X GET 'https://www.boredapi.com/api/activity' \
+  -H 'Accept: application/json' \
+  -H 'Content-Type: application/json'
+                </pre>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="heading10-en">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse10-en" aria-expanded="false" aria-controls="collapse10-en">
+                Joke API
+              </button>
+            </h2>
+            <div id="collapse10-en" class="accordion-collapse collapse" aria-labelledby="heading10-en" data-bs-parent="#api-examples-en">
+              <div class="accordion-body">
+                <pre>
+curl -X GET 'https://v2.jokeapi.dev/joke/Any' \
+  -H 'Accept: application/json' \
+  -H 'Content-Type: application/json'
+                </pre>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="heading11-en">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse11-en" aria-expanded="false" aria-controls="collapse11-en">
+                Open Meteo - Weather
+              </button>
+            </h2>
+            <div id="collapse11-en" class="accordion-collapse collapse" aria-labelledby="heading11-en" data-bs-parent="#api-examples-en">
+              <div class="accordion-body">
+                <pre>
+curl -X GET 'https://api.open-meteo.com/v1/forecast?latitude=10.76&longitude=106.66&current_weather=true' \
+  -H 'Accept: application/json' \
+  -H 'Content-Type: application/json'
+                </pre>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="heading12-en">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse12-en" aria-expanded="false" aria-controls="collapse12-en">
+                CoinGecko - Crypto Prices
+              </button>
+            </h2>
+            <div id="collapse12-en" class="accordion-collapse collapse" aria-labelledby="heading12-en" data-bs-parent="#api-examples-en">
+              <div class="accordion-body">
+                <pre>
+curl -X GET 'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&vs_currencies=usd' \
+  -H 'Accept: application/json' \
+  -H 'Content-Type: application/json'
+                </pre>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="heading13-en">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse13-en" aria-expanded="false" aria-controls="collapse13-en">
+                SpaceX - Latest Launch
+              </button>
+            </h2>
+            <div id="collapse13-en" class="accordion-collapse collapse" aria-labelledby="heading13-en" data-bs-parent="#api-examples-en">
+              <div class="accordion-body">
+                <pre>
+curl -X GET 'https://api.spacexdata.com/v4/launches/latest' \
+  -H 'Accept: application/json' \
+  -H 'Content-Type: application/json'
+                </pre>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="heading14-en">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse14-en" aria-expanded="false" aria-controls="collapse14-en">
+                History - Date
+              </button>
+            </h2>
+            <div id="collapse14-en" class="accordion-collapse collapse" aria-labelledby="heading14-en" data-bs-parent="#api-examples-en">
+              <div class="accordion-body">
+                <pre>
+curl -X GET 'https://history.muffinlabs.com/date' \
+  -H 'Accept: application/json' \
+  -H 'Content-Type: application/json'
+                </pre>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="mt-4">List of 100+ Free APIs</h3>
+        <p>I have compiled a rich list of over 100 free APIs (no API key required), covering 20+ domains such as Animals, Crypto, Dev Tools, Food, Games, Music… Easily explore them via:</p>
+        <ul>
+          <li><a href="https://apipheny.io/free-api/?utm_source=chatgpt.com">Public APIs (GitHub)</a> – a large API repository, regularly updated</li>
+          <li><a href="https://mixedanalytics.com/blog/list-actually-free-open-no-auth-needed-apis/?utm_source=chatgpt.com">Mixed Analytics</a> – a list of over 100 APIs with no authentication needed</li>
+        </ul>
+
+        <h3 class="mt-4">Next Steps for You</h3>
+        <ol>
+          <li>Browse the sources above and choose APIs suitable for your domain.</li>
+          <li>Insert the URL into the <code>curl</code> template as shown above.</li>
+          <li>Test immediately!!!!!</li>
+        </ol>
+      </div>
+    </div>
+
+    <p class="text-center mt-4">Copyright © 2025 TThaopm - Pham Minh Thao. All rights reserved.</p>
+  </div>
+
+  <!-- Bootstrap 5 JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const toggleButton = document.getElementById('toggle-language');
+    const vietnameseContent = document.getElementById('vietnamese-content');
+    const englishContent = document.getElementById('english-content');
+
+    toggleButton.addEventListener('click', () => {
+      if (vietnameseContent.classList.contains('d-none')) {
+        vietnameseContent.classList.remove('d-none');
+        englishContent.classList.add('d-none');
+        toggleButton.textContent = 'Switch to English';
+      } else {
+        vietnameseContent.classList.add('d-none');
+        englishContent.classList.remove('d-none');
+        toggleButton.textContent = 'Chuyển sang Tiếng Việt';
+      }
+    });
+  </script>
+</body>
+
+</html>

@@ -1,173 +1,98 @@
-# 📘 Danh Sách Hơn 10 API Miễn Phí Để Test GET
-
-Tài liệu này tổng hợp các API miễn phí, không cần đăng ký tài khoản hoặc token, thích hợp cho việc học tập, kiểm thử tính năng `GET` và tích hợp dữ liệu mẫu.
+Dưới đây là tài liệu dạng **`curl -X GET`** cho hơn **100 API miễn phí** giúp bạn test đủ mọi lĩnh vực (mèo, chó, thời tiết, tiền ảo, lịch sử…):
 
 ---
 
-## 1. 📄 JSONPlaceholder – API giả lập blog
+## 📚 Hướng dẫn nhanh
 
-* **URL:** `https://jsonplaceholder.typicode.com/posts`
-* **Tính năng:** Bài viết, người dùng, comment mẫu.
-* **Ví dụ:**
+* Mỗi đoạn lệnh gọi theo chuẩn:
 
   ```bash
-  curl https://jsonplaceholder.typicode.com/posts
+  curl -X GET '<URL>' \
+    -H 'Accept: application/json' \
+    -H 'Content-Type: application/json'
   ```
+* Bạn có thể copy hết vào file `.sh` và chạy.
 
 ---
 
-## 2. 🌐 Public APIs – Danh sách các API công khai
+## 🗂️ 14 ví dụ nổi bật
 
-* **URL:** `https://api.publicapis.org/entries`
-* **Tính năng:** Danh sách các API phân loại theo lĩnh vực.
-* **Ví dụ:**
+```bash
+curl -X GET 'https://jsonplaceholder.typicode.com/posts' \
+  -H 'Accept: application/json' \
+  -H 'Content-Type: application/json'
 
-  ```bash
-  curl https://api.publicapis.org/entries
-  ```
+curl -X GET 'https://api.publicapis.org/entries' \
+  -H 'Accept: application/json' \
+  -H 'Content-Type: application/json'
 
----
+curl -X GET 'https://catfact.ninja/fact' \
+  -H 'Accept: application/json' \
+  -H 'Content-Type: application/json'
 
-## 3. 🐱 Cat Facts – Thông tin về mèo
+curl -X GET 'https://dog.ceo/api/breeds/image/random' \
+  -H 'Accept: application/json' \
+  -H 'Content-Type: application/json'
 
-* **URL:** `https://catfact.ninja/fact`
-* **Tính năng:** Fact ngẫu nhiên về mèo.
-* **Ví dụ:**
+curl -X GET 'https://randomuser.me/api/' \
+  -H 'Accept: application/json' \
+  -H 'Content-Type: application/json'
 
-  ```bash
-  curl https://catfact.ninja/fact
-  ```
+curl -X GET 'https://api.quotable.io/random' \
+  -H 'Accept: application/json' \
+  -H 'Content-Type: application/json'
 
----
+curl -X GET 'https://restcountries.com/v3.1/all' \
+  -H 'Accept: application/json' \
+  -H 'Content-Type: application/json'
 
-## 4. 💡 Bored API – Gợi ý hoạt động
+curl -X GET 'https://dummyjson.com/products' \
+  -H 'Accept: application/json' \
+  -H 'Content-Type: application/json'
 
-* **URL:** `https://www.boredapi.com/api/activity`
-* **Tính năng:** Gợi ý hoạt động ngẫu nhiên.
-* **Ví dụ:**
+curl -X GET 'https://www.boredapi.com/api/activity' \
+  -H 'Accept: application/json' \
+  -H 'Content-Type: application/json'
 
-  ```bash
-  curl https://www.boredapi.com/api/activity
-  ```
+curl -X GET 'https://v2.jokeapi.dev/joke/Any' \
+  -H 'Accept: application/json' \
+  -H 'Content-Type: application/json'
 
----
+curl -X GET 'https://api.open-meteo.com/v1/forecast?latitude=10.76&longitude=106.66&current_weather=true' \
+  -H 'Accept: application/json' \
+  -H 'Content-Type: application/json'
 
-## 5. 🛒 DummyJSON – API dữ liệu thương mại
+curl -X GET 'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&vs_currencies=usd' \
+  -H 'Accept: application/json' \
+  -H 'Content-Type: application/json'
 
-* **URL:** `https://dummyjson.com/products`
-* **Tính năng:** Dữ liệu sản phẩm, người dùng, giỏ hàng...
-* **Ví dụ:**
+curl -X GET 'https://api.spacexdata.com/v4/launches/latest' \
+  -H 'Accept: application/json' \
+  -H 'Content-Type: application/json'
 
-  ```bash
-  curl https://dummyjson.com/products
-  ```
-
----
-
-## 6. 🌎 REST Countries – Thông tin các quốc gia
-
-* **URL:** `https://restcountries.com/v3.1/all`
-* **Tính năng:** Thông tin quốc kỳ, tên nước, dân số...
-* **Ví dụ:**
-
-  ```bash
-  curl https://restcountries.com/v3.1/all
-  ```
-
----
-
-## 7. 🔭 Open Meteo – Dự báo thời tiết
-
-* **URL:** `https://api.open-meteo.com/v1/forecast?latitude=10.76&longitude=106.66&current_weather=true`
-* **Tính năng:** Dự báo thời tiết hiện tại.
-* **Ví dụ:**
-
-  ```bash
-  curl "https://api.open-meteo.com/v1/forecast?latitude=10.76&longitude=106.66&current_weather=true"
-  ```
+curl -X GET 'https://history.muffinlabs.com/date' \
+  -H 'Accept: application/json' \
+  -H 'Content-Type: application/json'
+```
 
 ---
 
-## 8. 🕹️ JokeAPI – Truyện cười ngắn
+## 🔗 Danh sách 100+ API miễn phí
 
-* **URL:** `https://v2.jokeapi.dev/joke/Any`
-* **Tính năng:** Random joke (có thể chọn kiểu “Programming”, “Dark”...)
-* **Ví dụ:**
+Mình đã tổng hợp danh sách phong phú hơn **100 API miễn phí** (không cần API key), thuộc 20+ lĩnh vực như Animals, Crypto, Dev Tools, Food, Games, Music… Dễ dàng khám phá qua:
 
-  ```bash
-  curl https://v2.jokeapi.dev/joke/Any
-  ```
+👉 **Public APIs (GitHub)** – kho API lớn, cập nhật thường xuyên ([apipheny.io][1], [mixedanalytics.com][2])
+👉 **Mixed Analytics** – danh sách hơn 100 API không cần auth ([mixedanalytics.com][2])
 
 ---
 
-## 9. 📚 Quotable – Trích dẫn truyền cảm hứng
+## 🧰 Bước tiếp theo cho bạn
 
-* **URL:** `https://api.quotable.io/random`
-* **Tính năng:** Trích dẫn ngẫu nhiên.
-* **Ví dụ:**
-
-  ```bash
-  curl https://api.quotable.io/random
-  ```
+1. Duyệt qua các nguồn trên, chọn API phù hợp từng lĩnh vực.
+2. Chuyển URL vào `curl` template như trên.
+3. Test ngay!!!!!
 
 ---
 
-## 10. 🐶 Dog CEO API – Ảnh chó ngẫu nhiên
-
-* **URL:** `https://dog.ceo/api/breeds/image/random`
-* **Tính năng:** Trả về ảnh chó bất kỳ.
-* **Ví dụ:**
-
-  ```bash
-  curl https://dog.ceo/api/breeds/image/random
-  ```
-
----
-
-## 11. 🧪 Random User – Dữ liệu người dùng giả
-
-* **URL:** `https://randomuser.me/api/`
-* **Tính năng:** Sinh user giả (avatar, tên, giới tính...).
-* **Ví dụ:**
-
-  ```bash
-  curl https://randomuser.me/api/
-  ```
-
----
-
-## 12. 🪙 CoinGecko – Giá tiền điện tử
-
-* **URL:** `https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&vs_currencies=usd`
-* **Tính năng:** Lấy giá các loại coin.
-* **Ví dụ:**
-
-  ```bash
-  curl "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&vs_currencies=usd"
-  ```
-
----
-
-## 13. 🚀 SpaceX API – Thông tin phóng tên lửa
-
-* **URL:** `https://api.spacexdata.com/v4/launches/latest`
-* **Tính năng:** Thông tin các lần phóng gần đây.
-* **Ví dụ:**
-
-  ```bash
-  curl https://api.spacexdata.com/v4/launches/latest
-  ```
-
----
-
-## 14. 📅 Today in History – Sự kiện lịch sử
-
-* **URL:** `https://history.muffinlabs.com/date`
-* **Tính năng:** Các sự kiện đã diễn ra trong ngày này.
-* **Ví dụ:**
-
-  ```bash
-  curl https://history.muffinlabs.com/date
-  ```
-
----
+[1]: https://apipheny.io/free-api/?utm_source=chatgpt.com "Free API - 90+ Public APIs For Testing [No Key] - Apipheny"
+[2]: https://mixedanalytics.com/blog/list-actually-free-open-no-auth-needed-apis/?utm_source=chatgpt.com "Big List of Free and Open Public APIs (No Auth Needed)"

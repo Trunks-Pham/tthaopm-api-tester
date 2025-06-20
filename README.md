@@ -72,9 +72,7 @@ The filename will be timestamped like: `response-2025-06-19T07-27-44.json`.
 
 - This tool is client-side only — your data stays on your machine.
 - You can test with public APIs like:
-  - https://jsonplaceholder.typicode.com
-  - https://reqres.in
-  - https://dog.ceo/api
+  - https://github.com/Trunks-Pham/tthaopm-api-tester/blob/main/api-free.md
 
 ## Author
 
