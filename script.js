@@ -16,24 +16,32 @@ const bearerTokenInput = document.querySelector("[data-bearer-token]")
 const usernameInput = document.querySelector("[data-username]")
 const passwordInput = document.querySelector("[data-password]")
 const errorMessage = document.querySelector("#error-message")
+const curlInput = document.querySelector("#curl-input")
+const parseCurlBtn = document.querySelector("#parse-curl-btn")
+
+// Check selectors
+if (!form) console.error("Form element [data-form] not found")
+if (!curlInput) console.error("cURL input #curl-input not found")
+if (!parseCurlBtn) console.error("Parse cURL button #parse-curl-btn not found")
+if (!errorMessage) console.error("Error message #error-message not found")
 
 document
   .querySelector("[data-add-query-param-btn]")
-  .addEventListener("click", () => {
+  ?.addEventListener("click", () => {
     queryParamsContainer.append(createKeyValuePair())
   })
 
 document
   .querySelector("[data-add-request-header-btn]")
-  .addEventListener("click", () => {
+  ?.addEventListener("click", () => {
     requestHeadersContainer.append(createKeyValuePair())
   })
 
-queryParamsContainer.append(createKeyValuePair())
-requestHeadersContainer.append(createKeyValuePair())
+if (queryParamsContainer) queryParamsContainer.append(createKeyValuePair())
+if (requestHeadersContainer) requestHeadersContainer.append(createKeyValuePair())
 
 // Handle auth type selection
-authTypeSelect.addEventListener("change", () => {
+authTypeSelect?.addEventListener("change", () => {
   const authType = authTypeSelect.value
   bearerAuthSection.classList.add("d-none")
   basicAuthSection.classList.add("d-none")
@@ -43,6 +51,115 @@ authTypeSelect.addEventListener("change", () => {
     basicAuthSection.classList.remove("d-none")
   }
 })
+
+// Parse cURL command
+parseCurlBtn?.addEventListener("click", () => {
+  console.log("Parse cURL button clicked")
+  const curlCommand = curlInput?.value.trim()
+  if (!curlCommand) {
+    errorMessage.textContent = "Please enter a cURL command"
+    errorMessage.classList.remove("d-none")
+    console.warn("Empty cURL command")
+    return
+  }
+
+  try {
+    const parsed = parseCurlCommand(curlCommand)
+    console.log("Parsed cURL:", parsed)
+    if (!parsed.url) {
+      errorMessage.textContent = "No valid URL found in cURL command"
+      errorMessage.classList.remove("d-none")
+      console.warn("Parsed cURL has no URL")
+      return
+    }
+    // Populate UI fields
+    const urlInput = document.querySelector("[data-url]")
+    const methodSelect = document.querySelector("[data-method]")
+    if (urlInput) {
+      urlInput.value = parsed.url
+      console.log("Updated URL input:", parsed.url)
+    } else {
+      console.error("URL input [data-url] not found")
+    }
+    if (methodSelect) {
+      methodSelect.value = parsed.method
+      console.log("Updated method select:", parsed.method)
+    } else {
+      console.error("Method select [data-method] not found")
+    }
+    // Clear existing headers
+    requestHeadersContainer.innerHTML = ""
+    // Add parsed headers (excluding Authorization)
+    Object.entries(parsed.headers).forEach(([key, value]) => {
+      if (key.toLowerCase() !== "authorization") {
+        requestHeadersContainer.append(createKeyValuePair(key, value))
+        console.log(`Added header: ${key}=${value}`)
+      }
+    })
+    // Handle Authorization
+    const authHeader = parsed.headers.Authorization || parsed.headers.authorization
+    if (authHeader) {
+      if (authHeader.startsWith("Bearer ")) {
+        authTypeSelect.value = "bearer"
+        bearerTokenInput.value = authHeader.replace("Bearer ", "").trim()
+        bearerAuthSection.classList.remove("d-none")
+        basicAuthSection.classList.add("d-none")
+        console.log("Set Bearer token:", bearerTokenInput.value)
+      } else if (authHeader.startsWith("Basic ")) {
+        authTypeSelect.value = "basic"
+        const decoded = atob(authHeader.replace("Basic ", "").trim())
+        const [username, password] = decoded.split(":")
+        usernameInput.value = username || ""
+        passwordInput.value = password || ""
+        basicAuthSection.classList.remove("d-none")
+        bearerAuthSection.classList.add("d-none")
+        console.log("Set Basic Auth:", { username, password })
+      } else {
+        authTypeSelect.value = "none"
+        requestHeadersContainer.append(createKeyValuePair("Authorization", authHeader))
+        console.log("Added Authorization header:", authHeader)
+      }
+    } else {
+      authTypeSelect.value = "none"
+      console.log("No Authorization header found")
+    }
+    errorMessage.classList.add("d-none")
+  } catch (e) {
+    errorMessage.textContent = "Invalid cURL command format: " + e.message
+    errorMessage.classList.remove("d-none")
+    console.error("cURL parsing error:", e)
+  }
+})
+
+function parseCurlCommand(curlCommand) {
+  const result = { method: "GET", url: "", headers: {} }
+  // Split by spaces, preserving quoted strings
+  const parts = curlCommand.match(/(?:[^\s'"]+|'[^']*'|"[^"]*")+/g) || []
+  console.log("cURL parts:", parts)
+  if (!parts[0]?.startsWith("curl")) {
+    console.warn("cURL command does not start with 'curl'")
+    return result
+  }
+
+  for (let i = 1; i < parts.length; i++) {
+    const part = parts[i]
+    if (part === "-X" && parts[i + 1]) {
+      result.method = parts[i + 1].toUpperCase()
+      i++
+    } else if (part === "-H" && parts[i + 1]) {
+      const header = parts[i + 1].replace(/^['"]|['"]$/g, "")
+      const match = header.match(/([^:]+):\s*(.+)/)
+      if (match) {
+        const [, key, value] = match
+        result.headers[key] = value
+      }
+      i++
+    } else if (part.match(/^https?:\/\//) || (part.match(/^['"].*https?:\/\//))) {
+      result.url = part.replace(/^['"]|['"]$/g, "")
+    }
+  }
+  return result
+}
 
 axios.interceptors.request.use(request => {
   request.customData = request.customData || {}
@@ -73,15 +190,16 @@ axios.interceptors.response.use(updateEndTime, e => {
 })
 
 const { requestEditor, updateResponseEditor } = setupEditors()
-form.addEventListener("submit", e => {
+form?.addEventListener("submit", e => {
   e.preventDefault()
+  console.log("Form submitted")
   errorMessage.classList.add("d-none")
 
-  // Validate URL
-  const urlInput = document.querySelector("[data-url]").value.trim()
-  if (!urlInput.match(/^https?:\/\//)) {
+  const urlInput = document.querySelector("[data-url]")?.value.trim()
+  if (!urlInput?.match(/^https?:\/\//)) {
     errorMessage.textContent = "Invalid URL: Must include http:// or https://"
     errorMessage.classList.remove("d-none")
+    console.warn("Invalid URL:", urlInput)
     return
   }
 
@@ -91,27 +209,29 @@ form.addEventListener("submit", e => {
   } catch (e) {
     errorMessage.textContent = "JSON data is malformed"
     errorMessage.classList.remove("d-none")
+    console.error("JSON parse error:", e)
     return
   }
 
-  // Construct Authorization header
   let headers = {
     ...keyValuePairsToObjects(requestHeadersContainer),
     "Accept": "application/json",
     "Content-Type": "application/json"
   }
-  const authType = authTypeSelect.value
+  const authType = authTypeSelect?.value
   if (authType === "bearer") {
-    if (!bearerTokenInput.value.trim()) {
+    if (!bearerTokenInput?.value.trim()) {
       errorMessage.textContent = "Please enter a Bearer token"
       errorMessage.classList.remove("d-none")
+      console.warn("Missing Bearer token")
       return
     }
     headers = { ...headers, Authorization: `Bearer ${bearerTokenInput.value.trim()}` }
   } else if (authType === "basic") {
-    if (!usernameInput.value.trim() || !passwordInput.value.trim()) {
+    if (!usernameInput?.value.trim() || !passwordInput?.value.trim()) {
       errorMessage.textContent = "Please enter both username and password"
       errorMessage.classList.remove("d-none")
+      console.warn("Missing Basic Auth credentials")
       return
     }
     const encodedCredentials = btoa(`${usernameInput.value.trim()}:${passwordInput.value.trim()}`)
@@ -120,11 +240,11 @@ form.addEventListener("submit", e => {
 
   axios({
     url: urlInput,
-    method: document.querySelector("[data-method]").value,
+    method: document.querySelector("[data-method]")?.value,
     params: keyValuePairsToObjects(queryParamsContainer),
     headers,
     data,
-    timeout: 10000 // 10-second timeout
+    timeout: 10000
   })
     .then(response => {
       document
@@ -197,8 +317,7 @@ function keyValuePairsToObjects(container) {
   return [...pairs].reduce((data, pair) => {
     const key = pair.querySelector("[data-key]").value
     const value = pair.querySelector("[data-value]").value
-
     if (key === "") return data
     return { ...data, [key]: value }
-  }, {}) 
+  }, {})
 }
