@@ -123,6 +123,27 @@ parseCurlBtn?.addEventListener("click", () => {
       authTypeSelect.value = "none"
       console.log("No Authorization header found")
     }
+    // Update JSON editor
+    if (parsed.data) {
+      try {
+        // Validate JSON
+        JSON.parse(parsed.data)
+        requestEditor.dispatch({
+          changes: { from: 0, to: requestEditor.state.doc.length, insert: parsed.data }
+        })
+        console.log("Updated JSON editor with:", parsed.data)
+      } catch (e) {
+        errorMessage.textContent = "Invalid JSON data in cURL command"
+        errorMessage.classList.remove("d-none")
+        console.error("Invalid JSON data:", e.message)
+      }
+    } else {
+      // Clear JSON editor if no data
+      requestEditor.dispatch({
+        changes: { from: 0, to: requestEditor.state.doc.length, insert: "" }
+      })
+      console.log("No JSON data in cURL, cleared JSON editor")
+    }
     errorMessage.classList.add("d-none")
   } catch (e) {
     errorMessage.textContent = "Invalid cURL command format: " + e.message
@@ -132,7 +153,7 @@ parseCurlBtn?.addEventListener("click", () => {
 })
 
 function parseCurlCommand(curlCommand) {
-  const result = { method: "GET", url: "", headers: {} }
+  const result = { method: "GET", url: "", headers: {}, data: "" }
   // Split by spaces, preserving quoted strings
   const parts = curlCommand.match(/(?:[^\s'"]+|'[^']*'|"[^"]*")+/g) || []
   console.log("cURL parts:", parts)
@@ -153,6 +174,9 @@ function parseCurlCommand(curlCommand) {
         const [, key, value] = match
         result.headers[key] = value
       }
+      i++
+    } else if (part === "-d" && parts[i + 1]) {
+      result.data = parts[i + 1].replace(/^['"]|['"]$/g, "")
       i++
     } else if (part.match(/^https?:\/\//) || (part.match(/^['"].*https?:\/\//))) {
       result.url = part.replace(/^['"]|['"]$/g, "")
