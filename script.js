@@ -18,12 +18,14 @@ const passwordInput = document.querySelector("[data-password]")
 const errorMessage = document.querySelector("#error-message")
 const curlInput = document.querySelector("#curl-input")
 const parseCurlBtn = document.querySelector("#parse-curl-btn")
+const downloadResponseBtn = document.querySelector("#download-response-btn")
 
 // Check selectors
 if (!form) console.error("Form element [data-form] not found")
 if (!curlInput) console.error("cURL input #curl-input not found")
 if (!parseCurlBtn) console.error("Parse cURL button #parse-curl-btn not found")
 if (!errorMessage) console.error("Error message #error-message not found")
+if (!downloadResponseBtn) console.error("Download response button #download-response-btn not found")
 
 document
   .querySelector("[data-add-query-param-btn]")
@@ -214,6 +216,8 @@ axios.interceptors.response.use(updateEndTime, e => {
 })
 
 const { requestEditor, updateResponseEditor } = setupEditors()
+let lastResponseData = null // Store last response data for download
+
 form?.addEventListener("submit", e => {
   e.preventDefault()
   console.log("Form submitted")
@@ -277,6 +281,7 @@ form?.addEventListener("submit", e => {
       updateResponseDetails(response)
       updateResponseEditor(response.data)
       updateResponseHeaders(response.headers)
+      lastResponseData = response.data // Store response for download
       console.log("Request successful:", response)
     })
     .catch(e => {
@@ -297,7 +302,38 @@ form?.addEventListener("submit", e => {
       updateResponseDetails(e.response || { status: "N/A", customData: { time: "N/A" }, headers: {}, data: { error: errorText } })
       updateResponseEditor(e.response?.data || { error: errorText })
       updateResponseHeaders(e.response?.headers || {})
+      lastResponseData = e.response?.data || { error: errorText } // Store error response for download
     })
+})
+
+// Handle SAVE Response button
+downloadResponseBtn?.addEventListener("click", () => {
+  console.log("SAVE Response button clicked")
+  if (!lastResponseData) {
+    errorMessage.textContent = "No response data available to save"
+    errorMessage.classList.remove("d-none")
+    console.warn("No response data to save")
+    return
+  }
+
+  try {
+    const jsonString = JSON.stringify(lastResponseData, null, 2)
+    const blob = new Blob([jsonString], { type: "application/json" })
+    const url = URL.createObjectURL(blob)
+    const a = document.createElement("a")
+    a.href = url
+    a.download = `api_response_${new Date().toISOString()}.json`
+    document.body.appendChild(a)
+    a.click()
+    document.body.removeChild(a)
+    URL.revokeObjectURL(url)
+    console.log("Response saved as JSON file")
+    errorMessage.classList.add("d-none")
+  } catch (e) {
+    errorMessage.textContent = "Failed to save response: " + e.message
+    errorMessage.classList.remove("d-none")
+    console.error("Save response error:", e)
+  }
 })
 
 function updateResponseDetails(response) {
