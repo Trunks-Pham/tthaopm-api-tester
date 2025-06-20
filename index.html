@@ -48,6 +48,14 @@
     <h1 class="mb-3 fw-bold text-center text-primary">TThaopm - API Tester</h1>
     <img src="/software.png" alt="Logo" style="float: left; margin-right: 10px; width: 300px;">
 
+    <div class="card p-4 mb-4">
+      <div class="mb-3">
+        <label for="curl-input" class="form-label">Paste cURL Command</label>
+        <textarea id="curl-input" class="form-control" rows="4" placeholder="e.g., curl -X GET 'https://api.example.com/endpoint' -H 'Authorization: Bearer your-token-here'"></textarea>
+        <button id="parse-curl-btn" class="btn btn-outline-primary mt-2">Parse cURL</button>
+      </div>
+    </div>
+
     <div class="card p-4">
       <form data-form>
         <div class="input-group mb-4">
@@ -107,7 +115,7 @@
             </div>
             <div id="basic-auth" class="auth-section d-none">
               <label for="username" class="form-label">Username</label>
-              <input type="text" id="username" class="form-control" data-username placeholder="Enter Username" />
+              <input type="text" id="username" class="form-control" data-username placeholder="enter Username" />
               <label for="password" class="form-label mt-2">Password</label>
               <input type="password" id="password" class="form-control" data-password placeholder="Enter Password" />
             </div>
